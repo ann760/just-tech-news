@@ -29,6 +29,7 @@ Class project to create a node js application that will allow the user to
 - express
 - sequelize
 - dotenv
+- bcrypt
 - mysql 2
 - javaScript 
 - mysql
