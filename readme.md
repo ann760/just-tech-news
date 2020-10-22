@@ -35,11 +35,8 @@ Class project to create a node js application that will allow the user to
 - mysql
 
 ## Installation
-To run this program you will need to install the npm node js, express, sequelize, dotenv and mysql2
+To run this program you will need to install the npm node js, express, sequelize, dotenv, express-session, and mysql2
 
-npm run seeds
-# OR
-node seeds/index.js
 
 # link to site
 
