@@ -43,4 +43,4 @@ To run this program you will need to install the npm node js, express, sequelize
 
 ## Author
 * [Ann-Marie Orozco](ann760.github.io/myportfolio/) - 
-* [Git Repository](https://github.com/ann760/u-develop-it)
+* [Git Repository](https://github.com/ann760/just-tech-news)
