@@ -12,7 +12,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  console.log(req.session);
+  console.log("======================");
   Post.findAll({
     attributes: [
       "id",
@@ -43,11 +43,10 @@ router.get("/", (req, res) => {
   })
     .then((dbPostData) => {
       // pass a single post object into the homepage template
-      // console.log(dbPostData[0]);
       const posts = dbPostData.map((post) => post.get({ plain: true }));
       res.render("homepage", {
         posts,
-        loggedIn: req.session.loggedIn,
+        loggedIn: req.session.loggedIn
       });
     })
     .catch((err) => {
@@ -66,12 +65,7 @@ router.get("/post/:id", (req, res) => {
       "post_url",
       "title",
       "created_at",
-      [
-        sequelize.literal(
-          "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
-        ),
-        "vote_count",
-      ],
+      [sequelize.literal("(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"), "vote_count"]
     ],
     include: [
       {
@@ -79,15 +73,16 @@ router.get("/post/:id", (req, res) => {
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ["username"],
-        },
+          attributes: ["username"]
+        }
       },
       {
         model: User,
         attributes: ["username"],
-      },
-    ],
-  }).then((dbPostData) => {
+      }
+    ]
+  })
+  .then((dbPostData) => {
     if (!dbPostData) {
       res.status(404).json({ message: "No post found with this id" });
       return;
@@ -97,16 +92,16 @@ router.get("/post/:id", (req, res) => {
     const post = dbPostData.get({ plain: true });
 
     // pass data to template
-    res
-      .render("single-post", {
+    res.render("single-post", {
         post,
         loggedIn: req.session.loggedIn,
       })
+    })
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
-      });
-  });
+    });
 });
+
 
 module.exports = router;

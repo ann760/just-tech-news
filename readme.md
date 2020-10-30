@@ -39,6 +39,7 @@ To run this program you will need to install the npm node js, express, sequelize
 
 
 # link to site
+https://mighty-brushlands-60511.herokuapp.com/
 
 
 ## Author
